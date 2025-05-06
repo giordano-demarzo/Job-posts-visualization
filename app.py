@@ -591,7 +591,8 @@ def display_click(clickData):
         ])
     ])
 
+server = app.server  # crucial for Gunicorn
+
 if __name__ == "__main__":
-    print("Starting server...")
-    print(f"Number of unique ISCO categories: {n_categories}")
-    app.run_server(debug=True, port=8050)
+    port = int(os.environ.get("PORT", 8050))
+    app.run_server(debug=False, host="0.0.0.0", port=port)
